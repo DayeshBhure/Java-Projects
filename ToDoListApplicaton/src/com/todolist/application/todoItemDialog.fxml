@@ -1,0 +1,27 @@
+<?import javafx.scene.control.DialogPane?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.DatePicker?>
+<DialogPane fx:controller="com.todolist.application.DialogController"
+            xmlns:fx="http://javafx.com/fxml">
+<!--    <headerText>-->
+    <!--This is a dialog pane's header text whereas in Controller it is dialog's header text.-->
+<!--        Add a new To-do item.-->
+<!--    </headerText>-->
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="Short Description:" GridPane.rowIndex="0" GridPane.columnIndex="0" wrapText="true"/>
+            <TextField fx:id="shortDescriptionField" promptText="Enter short description here..."
+                       GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Details:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="detailsArea" promptText="Enter details here..."
+                      GridPane.rowIndex="1" GridPane.columnIndex="1" wrapText="true"/>
+            <Label text="Deadline:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="deadlinePicker" promptText="Choose a date"
+                        GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+</DialogPane>

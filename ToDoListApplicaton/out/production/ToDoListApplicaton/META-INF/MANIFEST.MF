@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Main-Class: com.todolist.application.Launcher
+Class-Path: ImagesForJavaFX.jar javafx-swt.jar javafx.base.jar javafx.co
+ ntrols.jar javafx.fxml.jar javafx.graphics.jar javafx.media.jar javafx.
+ swing.jar javafx.web.jar
+

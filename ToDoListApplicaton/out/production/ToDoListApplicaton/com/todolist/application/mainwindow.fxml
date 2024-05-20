@@ -1,0 +1,158 @@
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.RadioMenuItem?>
+<BorderPane fx:id="mainBorderPane" fx:controller="com.todolist.application.Controller"
+            xmlns:fx="http://javafx.com/fxml">
+
+    <fx:define>
+        <ToggleGroup fx:id="filterToggleGroup"/>
+    </fx:define>
+
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="Options">
+                    <graphic>
+                        <ImageView>
+                            <Image url="@/toolbarButtonGraphics/general/Preferences16.gif"/>
+                        </ImageView>
+                    </graphic>
+                    <items>
+                        <MenuItem text="Add new to-do" onAction="#showAddTodoDialog"/>
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Edit existing to-do" onAction="#showEditTodoDialog"/>
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Delete to-do" onAction="#handleDeleteItem"/>
+                        <SeparatorMenuItem/>
+                        <Menu text="Filter to-do">
+                            <items>
+                                <RadioMenuItem fx:id="subMenuAll" text="All items"
+                                               onAction="#handleFiltering" toggleGroup="$filterToggleGroup" selected="true"/>
+                                <SeparatorMenuItem/>
+                                <RadioMenuItem fx:id="subMenuToday" text="Today's items"
+                                               onAction="#handleFiltering" toggleGroup="$filterToggleGroup"/>
+                                <SeparatorMenuItem/>
+                                <RadioMenuItem fx:id="subMenuWeek" text="Week's items"
+                                               onAction="#handleFiltering" toggleGroup="$filterToggleGroup"/>
+                            </items>
+                        </Menu>
+                        <SeparatorMenuItem/>
+                        <MenuItem text="Exit Application" onAction="#handleExit"/>
+                    </items>
+                </Menu>
+            </MenuBar>
+            <ToolBar>
+                <HBox spacing="5">
+                    <Button onAction="#showAddTodoDialog">
+                        <tooltip>
+                            <Tooltip text="Add a new to-do item."/>
+                        </tooltip>
+                        <graphic>
+                            <ImageView>
+                                <Image url="@/toolbarButtonGraphics/general/Add16.gif"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button onAction="#showEditTodoDialog">
+                        <tooltip>
+                            <Tooltip text="Edit an existing to-do item."/>
+                        </tooltip>
+                        <graphic>
+                            <ImageView>
+                                <Image url="@/toolbarButtonGraphics/general/Edit16.gif"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button onAction="#handleDeleteItem">
+                        <tooltip>
+                            <Tooltip text="Delete an existing to-do item."/>
+                        </tooltip>
+                        <graphic>
+                            <ImageView>
+                                <Image url="@/toolbarButtonGraphics/general/Delete16.gif"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="filterAllButton" text="All items" onAction="#handleFiltering">
+                        <tooltip>
+                            <Tooltip text="Shows all items."/>
+                        </tooltip>
+                        <graphic>
+                            <ImageView>
+                                <Image url="@/toolbarButtonGraphics/general/History16.gif"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="filterTodayButton" text="Today's items" onAction="#handleFiltering">
+                        <tooltip>
+                            <Tooltip text="Shows items that are due today."/>
+                        </tooltip>
+                        <graphic>
+                            <ImageView>
+                                <Image url="@/toolbarButtonGraphics/general/History16.gif"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="filterWeekButton" text="Week's items" onAction="#handleFiltering">
+                        <tooltip>
+                            <Tooltip text="Shows items that are due this week."/>
+                        </tooltip>
+                        <graphic>
+                            <ImageView>
+                                <Image url="@/toolbarButtonGraphics/general/History16.gif"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <left>
+        <VBox>
+            <padding>
+                <Insets left="5" bottom="5"/>
+            </padding>
+            <HBox style="-fx-background-color: lightgrey">
+                <padding>
+                    <Insets topRightBottomLeft="5"/>
+                </padding>
+                <Label text="To Do: "/>
+                <Label fx:id="filterText"/>
+            </HBox>
+            <ListView fx:id="todoListView" VBox.vgrow="ALWAYS" onKeyPressed="#handleDeleteKeyPress"/>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox style="-fx-background-color: aliceblue">
+            <HBox style="-fx-background-color: lightgrey">
+                <padding>
+                    <Insets topRightBottomLeft="5"/>
+                </padding>
+                <Label text="Due: "/>
+                <Label fx:id="deadlineLabel"/>
+            </HBox>
+            <padding>
+                <Insets right="5" left="5" bottom="5"/>
+            </padding>
+            <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS" wrapText="true" editable="false"/>
+        </VBox>
+    </center>
+</BorderPane>
